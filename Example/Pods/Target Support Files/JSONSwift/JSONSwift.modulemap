@@ -1,6 +1,0 @@
-framework module JSONSwift {
-  umbrella header "JSONSwift-umbrella.h"
-
-  export *
-  module * { export * }
-}

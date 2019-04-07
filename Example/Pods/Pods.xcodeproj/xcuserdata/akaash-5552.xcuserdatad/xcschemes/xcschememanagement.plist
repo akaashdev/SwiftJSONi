@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>JSONSwift.xcscheme</key>
+		<key>Pods-SwiftJSONi_Tests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-JSONSwift_Tests.xcscheme</key>
+		<key>SwiftJSONi.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

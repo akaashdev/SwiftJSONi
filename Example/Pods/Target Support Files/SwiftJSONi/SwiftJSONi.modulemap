@@ -1,0 +1,6 @@
+framework module SwiftJSONi {
+  umbrella header "SwiftJSONi-umbrella.h"
+
+  export *
+  module * { export * }
+}

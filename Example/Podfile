@@ -1,6 +1,6 @@
 use_frameworks!
-target 'JSONSwift_Tests' do
-  pod 'JSONSwift', :path => '../'
+target 'SwiftJSONi_Tests' do
+  pod 'SwiftJSONi', :path => '../'
   
   
 end

@@ -1,5 +1,5 @@
 import XCTest
-import JSONSwift
+import SwiftJSONi
 
 class Tests: XCTestCase {
     
