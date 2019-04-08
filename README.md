@@ -1,6 +1,6 @@
 # SwiftJSONi
 
-[![CI Status](https://img.shields.io/travis/akaashdev/SwiftJSONi.svg?style=flat)](https://travis-ci.org/akaashdev/SwiftJSONi)
+[![CI Status](https://img.shields.io/travis/akaashdev/JSONSwift.svg?style=flat)](https://travis-ci.org/akaashdev/SwiftJSONi)
 [![Version](https://img.shields.io/cocoapods/v/SwiftJSONi.svg?style=flat)](https://cocoapods.org/pods/SwiftJSONi)
 [![License](https://img.shields.io/cocoapods/l/SwiftJSONi.svg?style=flat)](https://cocoapods.org/pods/SwiftJSONi)
 [![Platform](https://img.shields.io/cocoapods/p/SwiftJSONi.svg?style=flat)](https://cocoapods.org/pods/SwiftJSONi)
@@ -10,7 +10,8 @@
 
 The traditional way of handling JSON in Swift is so cumbersome and requires many lines of code. For example, consider a JSON response from a API for bakery items,
 
-```{
+```
+{
     "items": {
         "item": [
             {
@@ -56,7 +57,7 @@ if let json = try? JSONSerialization.jsonObject(with: jsonData, options: .allowF
 }
 ```
 
-It invloves lots of typecasting and safe index checks due Swift's strict typecast and array index policies.
+It involves lots of typecasting and safe index checks due to Swift's strict typecast and array index policies.
 To achieve the same with SwiftJSONi, the code looks like,
 
 ```
@@ -67,7 +68,7 @@ if let json = JSON(data: jsonData),
 }
 ```
 
-That's it. It so safe and readable. No need to worry about type casting and array index checks. It is all done automatically.
+That's it!!  It is so safe and readable. No need to worry about type casting and array index checks. It is all done automatically.
 
 ## Installation
 
