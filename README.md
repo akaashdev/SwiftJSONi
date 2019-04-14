@@ -1,6 +1,6 @@
 # SwiftJSONi
 
-[![CI Status](https://img.shields.io/travis/akaashdev/JSONSwift.svg?style=flat)](https://travis-ci.org/akaashdev/SwiftJSONi)
+[![CI Status](https://img.shields.io/travis/akaashdev/SwiftJSONi.svg?style=flat)](https://travis-ci.org/akaashdev/SwiftJSONi)
 [![Version](https://img.shields.io/cocoapods/v/SwiftJSONi.svg?style=flat)](https://cocoapods.org/pods/SwiftJSONi)
 [![License](https://img.shields.io/cocoapods/l/SwiftJSONi.svg?style=flat)](https://cocoapods.org/pods/SwiftJSONi)
 [![Platform](https://img.shields.io/cocoapods/p/SwiftJSONi.svg?style=flat)](https://cocoapods.org/pods/SwiftJSONi)
