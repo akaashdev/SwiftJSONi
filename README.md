@@ -108,9 +108,11 @@ let id = firstItem["id"].string
 ```
 
 Difference between `.string` and `.stringValue` is,
-    `.string`  - Returns the String value if available else returns nil
-    `.stringValue` - Returns the String value if available else returns default value i.e "" (empty String)
-    
+
+`.string`  - Returns the String value if available else returns nil
+
+`.stringValue` - Returns the String value if available else returns default value i.e "" (empty String)
+
 So, getting the 'ppu' of first item belike,
 
 ```
@@ -120,41 +122,68 @@ let ppu = firstItem["ppu"].floatValue
 ### Methods
 
 For String,
-    `string` - Returns the `String` value if available else returns `nil`
-    `stringValue` - Returns the `String` value if available else returns default value i.e "" (empty String)
-    
+
+| | |
+|--|--|
+|`string` | Returns the `String` value if available else returns `nil` |
+|`stringValue` | Returns the `String` value if available else returns default value i.e "" (empty String) |
+
 For Int,
-    `int`  - Returns the `Int` value if available else returns `nil`
-    `intValue` - Returns the `Int` value if available else returns default value i.e `0`
+
+| | |
+|--|--|
+|`int` | Returns the `Int` value if available else returns `nil`|
+|`intValue` |Returns the `Int` value if available else returns default value i.e `0`|
 
 For Float,
-    `float`  - Returns the `Float` value if available else returns `nil`
-    `floatValue` - Returns the `Float` value if available else returns default value i.e `0.0`
-    
+
+| | |
+|--|--|
+|`float` | Returns the `Float` value if available else returns `nil`|
+|`floatValue` |Returns the `Float` value if available else returns default value i.e `0.0`|
+
 For Double,
-    `double`  - Returns the `Double` value if available else returns `nil`
-    `doubleValue` - Returns the `Double` value if available else returns default value i.e `0.0`
-    
+
+| | |
+|--|--|
+|`double` |Returns the `Double` value if available else returns `nil`|
+|`doubleValue` |Returns the `Double` value if available else returns default value i.e `0.0`|
+
 For Bool,
-    `bool`  - Returns the `Bool` value if available else returns `nil`
-    `boolValue` - Returns the `Bool` value if available else returns default value i.e `false`
-    
+
+| | |
+|--|--|
+|`bool` |Returns the `Bool` value if available else returns `nil`|
+|`boolValue` |Returns the `Bool` value if available else returns default value i.e `false`|
+
 For JSON Object,
-    `jsonObject` - Returns `[String: JSON]?`
-    `jsonObjectValue` - Returns `[String: JSON]` else `[:]`
-    
+
+| | |
+|--|--|
+|`jsonObject` |Returns `[String: JSON]?`|
+|`jsonObjectValue` |Returns `[String: JSON]` else `[:]`|
+
 For JSON Array,
-    `jsonArray` - Returns `[JSON]?`
-    `jsonArrayValue` - Returns `[JSON]` else `[]`
-    
+
+| | |
+|--|--|
+|`jsonArray` |Returns `[JSON]?`|
+|`jsonArrayValue` |Returns `[JSON]` else `[]`|
+
 For Array,
-    `array` - Returns `[Any?]`
-    `arrayValue` - Returns `[Any?]` else `[]`
-    
+
+| | |
+|--|--|
+|`array` |Returns `[Any?]`|
+|`arrayValue` |Returns `[Any?]` else `[]`|
+
 For Dictionary,
-    `dictionary` - Returns `[String: Any]?`
-    `dictionaryValue` - Returns `[String: Any]` else `[:]`
-    
+
+| | |
+|--|--|
+|`dictionary` |Returns `[String: Any]?`|
+|`dictionaryValue` |Returns `[String: Any]` else `[:]`|
+
 ### Type Checks
 
 Since JSON is a custom type, typecasting it to primitive types always fails,
@@ -172,18 +201,24 @@ if json["name"] is String {  // Condition always fails.
 Hence, SwiftJSONi uses inbuilt properties to check the type of values.
 Only these types will be accepted by JSON. Any other user-defined types cannot be used as JSON value.
 
-`isNull` - Returns `true` if the value is `nil`.
-`isString` - Returns `true` if the value is `String`.
-`isInt` - Returns `true` if the value is `Int`.
-`isFloat` - Returns `true` if the value is `Float`.
-`isDouble` - Returns `true` if the value is `Double`.
-`isBool` - Returns `true` if the value is `Bool`.
 
-`isJsonObject` - Returns `true` if the value is `[String: JSON]`.
-`isJsonArray` - Returns `true` if the value is `[JSON]`.
 
-`isArray` - Returns `true` if the value is `[Any?]`.
-`isDictionary` - Returns `true` if the value is `[String: Any]`.
+| | |
+|--|--|
+|`isNull` | Returns `true` if the value is `nil`.|
+| | |
+|`isString` | Returns `true` if the value is `String`.|
+|`isInt` | Returns `true` if the value is `Int`.|
+|`isFloat` | Returns `true` if the value is `Float`.|
+|`isDouble` | Returns `true` if the value is `Double`.|
+|`isBool` | Returns `true` if the value is `Bool`.|
+| | |
+|`isJsonObject` | Returns `true` if the value is `[String: JSON]`.|
+|`isJsonArray` | Returns `true` if the value is `[JSON]`.|
+| | |
+|`isArray` | Returns `true` if the value is `[Any?]`.|
+|`isDictionary` | Returns `true` if the value is `[String: Any]`.|
+
 
 So the above situations can be handled as,
 
