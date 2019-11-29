@@ -1,6 +1,11 @@
 use_frameworks!
-target 'SwiftJSONi_Tests' do
+
+target 'SwiftJSONi_Example' do
   pod 'SwiftJSONi', :path => '../'
-  
-  
+
+  target 'SwiftJSONi_Tests' do
+    inherit! :search_paths
+
+    
+  end
 end

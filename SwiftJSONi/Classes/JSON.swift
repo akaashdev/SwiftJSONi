@@ -38,14 +38,14 @@ public struct JSON {
     
     private let _value: Any?
     
-    private let _isValid: Bool
+    private let _isValidType: Bool
     
     
 //MARK: Get-Only Properties
-    /// A Boolean that tells whether the JSON is valid or not
-    /// - Returns: true if the JSON is valid
-    public var isValid: Bool {
-        return _isValid
+    /// A Boolean that tells whether the JSON is of valid type or not
+    /// - Returns: true if the JSON is of valid type
+    public var isValidType: Bool {
+        return _isValidType
     }
     
     /// Initialize JSON Object with value of type
@@ -54,7 +54,7 @@ public struct JSON {
     public init(_ value: Any?) {
         
         if value == nil {
-            self._isValid = true
+            self._isValidType = true
             self._value = nil
             return
         }
@@ -69,7 +69,7 @@ public struct JSON {
                 self._array = array.map { JSON($0) }
             }
             
-            self._isValid = true
+            self._isValidType = true
             self._value = value
             return
             
@@ -91,7 +91,7 @@ public struct JSON {
             isValid = false
         }
         
-        self._isValid = isValid
+        self._isValidType = isValid
         self._value = isValid ? value : nil
         
     }
@@ -103,13 +103,13 @@ public struct JSON {
         var validJson = [String: JSON]()
         var valid = true
         for (key, value) in object {
-            let value_ = JSON(value)
-            guard value_._isValid else {
+            let value_ = JSON(validateAny: value)
+            guard let val = value_ else {
                 print("Value ('\(value)') for Key ('\(key)') is invalid JSON Value format.")
                 valid = false
                 continue
             }
-            validJson[key] = value_
+            validJson[key] = val
         }
         
         if !valid {
@@ -120,7 +120,7 @@ public struct JSON {
         self._object = validJson
         self._array = nil
         
-        self._isValid = true
+        self._isValidType = true
     }
     
     /// Initializes only valid JSON Array
@@ -131,7 +131,7 @@ public struct JSON {
         var valid = true
         for (index, value) in array.enumerated() {
             let value_ = JSON(value)
-            guard value_._isValid else {
+            guard value_._isValidType else {
                 print("Value ('\(value ?? "nil")') at Indexx ('\(index)') is invalid JSON Value format.")
                 valid = false
                 continue
@@ -148,7 +148,7 @@ public struct JSON {
         self._array = validJson
         self._array = nil
         
-        self._isValid = true
+        self._isValidType = true
     }
     
     /// Initializes only valid JSON Array.
@@ -180,10 +180,14 @@ public struct JSON {
              is Float,
              is Int,
              is NSNumber,
-             is Bool,
-             is Array__,
-             is Dictionary__:
+             is Bool:
             self.init(any)
+            
+        case let array as Array__:
+            self.init(validateArray: array)
+            
+        case let dict as Dictionary__:
+            self.init(validateObject: dict)
             
         case let data as Data:
             self.init(data: data)
@@ -281,19 +285,19 @@ public struct JSON {
     public var isNull: Bool { return value == nil }
     
     /// - Returns: true if the value for the corresponding key is of type String.
-    public var isString: Bool { return string != nil }
+    public var isString: Bool { return value is String }
     
     /// - Returns: true if the value for the corresponding key is of type Int.
-    public var isInt: Bool { return int != nil }
+    public var isInt: Bool { return value is Int }
     
     /// - Returns: true if the value for the corresponding key is of type Float.
-    public var isFloat: Bool { return float != nil }
+    public var isFloat: Bool { return value is Float }
     
     /// - Returns: true if the value for the corresponding key is of type Double.
-    public var isDouble: Bool { return double != nil }
+    public var isDouble: Bool { return value is Double }
     
     /// - Returns: true if the value for the corresponding key is of type Bool.
-    public var isBool: Bool { return bool != nil }
+    public var isBool: Bool { return value is Bool }
     
     
     
@@ -305,16 +309,16 @@ public struct JSON {
     
     
     /// - Returns: true if the value for the corresponding key is of type Array ([Any?]).
-    public var isArray: Bool { return array != nil }
+    public var isArray: Bool { return value is Array__ }
     
     /// - Returns: true if the value for the corresponding key is of type Dictionary ([String: Any]).
-    public var isDictionary: Bool { return dictionary != nil }
+    public var isDictionary: Bool { return value is Dictionary__ }
     
     
     
     ///Prints the JSON in prettyPrint format.
     public func debugPrint() {
-        print(getFormattedString(self, format: .pretty))
+        print(debugDescription)
     }
     
     
@@ -359,11 +363,35 @@ public struct JSON {
         return nil
     }
     
+    public var count: Int {
+        if let array = _array {
+            return array.count
+        }
+        if let dict = _object {
+            return dict.count
+        }
+        return 0
+    }
+    
     
     /// Boolean that indicates whether the JSON is empty
     /// - Returns: true for nullJson.
     public var isEmpty: Bool {
-        return _array?.isEmpty ?? _object?.isEmpty ?? value == nil
+        if let array = _array {
+            return array.isEmpty
+        }
+        if let obj = _object {
+            return obj.isEmpty
+        }
+        return value == nil
+    }
+    
+    
+    public var validate: JSON? {
+        if value == nil {
+            return nil
+        }
+        return self
     }
     
     
@@ -564,7 +592,7 @@ extension JSON: ExpressibleByNilLiteral {
 extension JSON: CustomStringConvertible {
     
     public var description: String {
-        return getFormattedString(self)
+        return getFormattedString(self, literalizeString: true)
     }
     
 }
@@ -573,7 +601,7 @@ extension JSON: CustomStringConvertible {
 extension JSON: CustomDebugStringConvertible {
     
     public var debugDescription: String {
-        return getFormattedString(self, format: .pretty)
+        return getFormattedString(self, format: .pretty, literalizeString: true)
     }
     
 }
